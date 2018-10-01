@@ -20,10 +20,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Optional;
 import javafx.stage.FileChooser.ExtensionFilter;
-import java.util.HashMap;
 import java.util.UUID;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import javafx.fxml.FXML;
 import javafx.stage.FileChooser;
 import java.nio.file.Paths;
@@ -39,19 +36,15 @@ import java.nio.file.Files;
  * @author  Robert Durst, Yi Feng, Melogy Mao, Danqing Zhao
  */
 public class Controller{
-
-    /** Keep a cache of opened/saved tabs
-     *      key   - TextArea id
-     *      value - SHA256(TextArea text)  
-     */ 
-    HashMap<String, String> tabContentCache = new HashMap<>();
-
     // hello button specified in Main.fxml
     @FXML Button helloButton;
     // goodbye button specified in Main.fxml
     @FXML Button goodbyeButton;
     // tab pane containing text areas for open files, specified in Main.fxml
     @FXML TabPane tabPane;
+
+    // CACHE
+    SavedCache savedCache = new SavedCache();
 
     /**
      * Create a dialog that takes in an integer between 0 and 255,
@@ -190,7 +183,7 @@ public class Controller{
                 tab.setText(file.toString());
 
                  // add TextArea to hashmap
-                 appendTabContentCache(textArea);
+                 savedCache.append(textArea.getId(),  textArea.getText());
             }
             catch(IOException e){
                 System.out.println(e.getMessage());
@@ -221,7 +214,7 @@ public class Controller{
                 writer.close();
 
                 // add TextArea to hashmap
-                appendTabContentCache(textArea);
+                savedCache.append(textArea.getId(),  textArea.getText());
 
             } catch (IOException e) {
                 System.out.println(e.getMessage());
@@ -257,13 +250,11 @@ public class Controller{
     */
     Boolean handleClose(Tab tab, ActionEvent event){
         TextArea textArea = (TextArea) tab.getContent();
-        String hashedText = hashAString(textArea.getText());
-        String id = textArea.getId();
 
         // check if (a) and (b)
-        if (tabContentCache.containsKey(id) && tabContentCache.get(id).equals(hashedText)) {
+        if (savedCache.tabHasChanged(textArea.getId(), textArea.getText())) {
             tabPane.getTabs().remove(tab);
-            removeTabContentCache(textArea);
+            savedCache.remove(textArea.getId());
             return false;
         } 
 
@@ -274,7 +265,7 @@ public class Controller{
             handleSaveAction(event);
             // remove tab from cache since saving it adds it
             // to the cache
-            removeTabContentCache(textArea);
+            savedCache.remove(textArea.getId());
             tabPane.getTabs().remove(tab);
         } else if(res == ButtonType.NO){
             tabPane.getTabs().remove(tab);
@@ -361,7 +352,7 @@ public class Controller{
                 textArea.setId(id);
 
                 // add TextArea to hashmap
-                appendTabContentCache(textArea);
+                savedCache.append(textArea.getId(), textArea.getText());
             } catch (IOException e) {
                 AlertBox.fileNotFound();
             }
@@ -381,52 +372,5 @@ public class Controller{
      */
     String getFileContentString(File file) throws IOException {
         return new String(Files.readAllBytes(Paths.get(file.toURI())));
-    }
-
-    /**
-     * Updates/adds a textarea's content to the cache.
-     * 
-     * @param textArea TextArea object
-     */
-    private void appendTabContentCache(TextArea textArea) {
-        // capture data related to TextArea
-        String id = textArea.getId();
-        String content = textArea.getText();
-
-        tabContentCache.put(id, hashAString(content));
-    }
-
-    /**
-     * Removes a textarea's content to the cache.
-     * 
-     * @param textArea TextArea object
-     */
-    private void removeTabContentCache(TextArea textArea) {    
-        // capture data related to TextArea
-        String id = textArea.getId();
-
-        tabContentCache.remove(id);
-    }
-
-    /**
-     * Applies SHA-256 to a string.
-     * 
-     * @param text     a normal String 
-     * @return String  a hashed String
-     */
-    private String hashAString(String text) {
-        // default returns input
-        String result = text;
-
-        try {
-            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-            messageDigest.update(text.getBytes());
-            result = new String(messageDigest.digest());
-          }
-          catch (NoSuchAlgorithmException ex) {
-            System.err.println(ex);
-          }
-
-        return result;
     }
 }
