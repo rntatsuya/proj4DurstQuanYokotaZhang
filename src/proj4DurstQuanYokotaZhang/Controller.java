@@ -76,46 +76,21 @@ public class Controller{
     /**
      * Exit the program. Calls a handleClose method for all
      * tabs in tab pane to ask if it needs to be saved. Goes
-     * through all tabs from left to right, looping around
-     * when past index 0.
+     * through all tabs from right to left.
      * 
      * @param event ActionEvent object
      */
     @FXML void handleExitAction(ActionEvent event) {
-        int startSize = tabPane.getTabs().size();
-        // starts from focused on tab 
-        int startIndex = tabPane.getSelectionModel().getSelectedIndex();
-        // secondaryIndex is the starting point for the second loop.
-        // i.e. for tabs [0][1][2][3]
-        //      startIndex     = 1
-        //      secondaryIndex = 1
-        //
-        //      since after we close all the tabs going left from 1,
-        //      we will have [2][3] left over. Thus our secondary
-        //      index will put us at [3].
-        int secondaryIndex = startSize - (startIndex + 2);
-        int counter = 0;
-
-        for (int i =  0; i < startSize; i++){
-            // check if we need to wrap around for second loop
-            if (startIndex < counter){
-                startIndex = secondaryIndex;
-                counter = 0; 
-            }
-            
-            int curIndex = startIndex - counter;
-
+        for (int i =  tabPane.getTabs().size() - 1; i != -1; i--){
             // make sure the currently selected tab, by index and by focus,
             // are in sync
-            tabPane.getSelectionModel().select(tabPane.getTabs().get(curIndex));
-            Boolean shouldBreak = handleClose(tabPane.getTabs().get(curIndex), event);
+            tabPane.getSelectionModel().select(tabPane.getTabs().get(i));
+            Boolean shouldBreak = handleClose(tabPane.getTabs().get(i), event);
 
             // if cancel is selected, break
             if (shouldBreak) {
                 break;
             }
-
-            counter += 1;
         }
 
         if(tabPane.getTabs().size() == 0){
