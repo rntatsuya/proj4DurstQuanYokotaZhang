@@ -26,8 +26,6 @@ import javafx.scene.Parent;
  */
 public class Main extends Application {
 
-
-
     /**
      * Create a window and load content from fxml and css
      *

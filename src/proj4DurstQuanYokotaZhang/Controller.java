@@ -12,7 +12,6 @@ package proj4DurstQuanYokotaZhang;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
-import javafx.scene.control.Alert.AlertType;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -27,6 +26,10 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import javafx.fxml.FXML;
 import javafx.stage.FileChooser;
+import java.nio.file.Paths;
+import java.nio.file.Files;
+
+
 
 /**
  * This class contains event handlers for the buttons and the menu items.
@@ -162,12 +165,7 @@ public class Controller{
      * @param event ActionEvent object
      */
     @FXML void handleAboutAction(ActionEvent event) {
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("About us");
-        alert.setHeaderText("Some information about us...");
-        alert.setContentText("Authors:\nRobert Durst, Yi Feng,Melody Mao, Danqing Zhao\njoyful programmers who code happily together everyday :)");
-
-        alert.showAndWait();
+        AlertBox.aboutUs();
     }
     
     /**
@@ -269,28 +267,18 @@ public class Controller{
             return false;
         } 
 
-        Alert alert = new Alert(
-            Alert.AlertType.CONFIRMATION,
-            "Want to save before exit?",
-            ButtonType.YES,
-            ButtonType.NO,
-            ButtonType.CANCEL
-        );
-        alert.setTitle("Alert");
-
-        // display alert
-        alert.showAndWait();
+        ButtonType res = AlertBox.closeTab();
 
         // handle user response
-        if(alert.getResult() == ButtonType.YES){
+        if(res == ButtonType.YES){
             handleSaveAction(event);
             // remove tab from cache since saving it adds it
             // to the cache
             removeTabContentCache(textArea);
             tabPane.getTabs().remove(tab);
-        } else if(alert.getResult() == ButtonType.NO){
+        } else if(res == ButtonType.NO){
             tabPane.getTabs().remove(tab);
-        } else if (alert.getResult() == ButtonType.CANCEL) {
+        } else if (res == ButtonType.CANCEL) {
             return true;
         }
 
@@ -362,17 +350,22 @@ public class Controller{
             TextArea textArea = new TextArea();
             tab.setContent(textArea);
 
-            String fileText = getFileContentString(file);
-            textArea.setText(fileText);
-            tab.setText(file.getAbsolutePath());
-            tab.setUserData(file.getAbsolutePath());
+            try {
+                String fileText = getFileContentString(file);
+                textArea.setText(fileText);
+                tab.setText(file.getAbsolutePath());
+                tab.setUserData(file.getAbsolutePath());
 
-            // Set a unique Id for the thing
-            String id = UUID.randomUUID().toString();
-            textArea.setId(id);
+                // Set a unique Id for the thing
+                String id = UUID.randomUUID().toString();
+                textArea.setId(id);
 
-            // add TextArea to hashmap
-            appendTabContentCache(textArea);
+                // add TextArea to hashmap
+                appendTabContentCache(textArea);
+            } catch (IOException e) {
+                AlertBox.fileNotFound();
+            }
+            
         }
     }
 
@@ -386,35 +379,8 @@ public class Controller{
      * @param  file    File object
      * @return String  contents of the file
      */
-    String getFileContentString(File file){
-        StringBuilder stringBuffer = new StringBuilder();
-        FileReader reader = null;
-         
-        try {
-            // attempt to read a new file and instantiate a
-            // new buffer Reader
-            reader = new FileReader(file);
-            
-            // read through the file character by character and append
-            // to the buffer to return
-            int chars = 0;
-            while ((chars = reader.read()) != -1) {
-                stringBuffer.append((char)chars);
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        } catch(IOException io) {
-            System.out.println(io.getMessage());
-        }
-
-        // once we are done, close the buffer reader
-        try {
-            reader.close();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-         
-        return stringBuffer.toString();
+    String getFileContentString(File file) throws IOException {
+        return new String(Files.readAllBytes(Paths.get(file.toURI())));
     }
 
     /**
