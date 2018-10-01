@@ -71,6 +71,7 @@ public class Controller{
     private static final String SEMICOLON_PATTERN = "\\;";
     private static final String STRING_PATTERN = "\"([^\"\\\\]|\\\\.)*\"";
     private static final String COMMENT_PATTERN = "//[^\n]*" + "|" + "/\\*(.|\\R)*?\\*/";
+    private static final String INT_PATTERN = "\\d+";
 
     private static final Pattern PATTERN = Pattern.compile(
             "(?<KEYWORD>" + KEYWORD_PATTERN + ")"
@@ -176,7 +177,7 @@ public class Controller{
     /**
      * Create a new tab named 'New file' with a text area.
      *
-     * @param even ActionEvent object
+     * @param event ActionEvent object
      */
     @FXML void handleNewAction(ActionEvent event) {
         // instantiate a new Tab
@@ -205,7 +206,7 @@ public class Controller{
     }
 
     /**
-     * Create and oepn a dialog that displays information about
+     * Create and open a dialog that displays information about
      * the program.
      *
      * @param event ActionEvent object
@@ -298,8 +299,8 @@ public class Controller{
      * tab's TextArea's contents before closing it.
      *
      * @param event    ActionEvent object
-     * @param thisTab  Tab object
-     * @return Boolean should break for handleExitAction
+     * @param tab Tab object
+     * @return boolean should break for handleExitAction
      */
     Boolean handleClose(Tab tab, ActionEvent event){
         TextArea textArea = (TextArea) tab.getContent();
