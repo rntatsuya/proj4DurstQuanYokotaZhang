@@ -246,9 +246,10 @@ public class Controller{
      * 
      * @param event    ActionEvent object
      * @param thisTab  Tab object
-     * @return Boolean should break for handleExitAction
+     * @return boolean returns true if user hits cancel and the
+     *                 exit method should halt
     */
-    Boolean handleClose(Tab tab, ActionEvent event){
+    boolean handleClose(Tab tab, ActionEvent event){
         TextArea textArea = (TextArea) tab.getContent();
 
         // check if (a) and (b)
