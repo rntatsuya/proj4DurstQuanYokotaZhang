@@ -27,7 +27,6 @@ import java.nio.file.Paths;
 import java.nio.file.Files;
 
 
-
 /**
  * This class contains event handlers for the buttons and the menu items.
  * Buttons: Hello, Goodbye

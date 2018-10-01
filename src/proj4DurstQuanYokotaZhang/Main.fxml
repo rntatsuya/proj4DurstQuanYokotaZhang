@@ -45,8 +45,5 @@
         <Button mnemonicParsing="false" text="Goodbye" fx:id="goodbyeButton" onAction="#handleGoodbyeButtonAction"/>
     </ToolBar>
     <TabPane fx:id="tabPane" VBox.vgrow="ALWAYS">
-        <Tab text="New file">
-            <TextArea prefWidth="640.0" text="Sample text" fx:id="textarea1"/>
-        </Tab>
     </TabPane>
 </VBox>
