@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--File: Main.fxml-->
+<!--Names: Robert Durst, Yi Feng, Melogy Mao, Danqing Zhao-->
+<!--F18 CS361-->
+<!--Project 3-->
+<!--Date: 09/25/2018-->
+
+<!--imported packages-->
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.Tab?>
+<VBox prefHeight="400.0" prefWidth="640.0" stylesheets="@Main.css" fx:controller="proj4DurstQuanYokotaZhang.Controller" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:id="VBox" >
+    <MenuBar VBox.vgrow="NEVER">
+        <Menu mnemonicParsing="false" text="File">
+            <MenuItem mnemonicParsing="false" text="About..." fx:id="aboutButton" onAction="#handleAboutAction"/>
+            <SeparatorMenuItem/>
+            <MenuItem mnemonicParsing="false" text="New" fx:id="newMenuButton" onAction="#handleNewAction"/>
+            <MenuItem mnemonicParsing="false" text="Open" fx:id="openMenuButton" onAction="#handleOpenAction"/>
+            <MenuItem mnemonicParsing="false" text="Save As..." fx:id="saveAsMenuButton" onAction="#handleSaveAsAction"/>
+            <MenuItem mnemonicParsing="false" text="Save" fx:id="saveMenuButton" onAction="#handleSaveAction"/>
+            <MenuItem mnemonicParsing="false" text="Close" fx:id="closeMenuButton" onAction="#handleCloseAction"/>
+            <SeparatorMenuItem/>
+            <MenuItem mnemonicParsing="false" text="Exit" fx:id="exitMenuButton" onAction="#handleExitAction"/>
+        </Menu>
+         <Menu mnemonicParsing="false" text="Edit">
+            <MenuItem mnemonicParsing="false" text="Undo" fx:id="undoMenuButton" onAction="#handleEditAction"/>
+            <MenuItem mnemonicParsing="false" text="Redo" fx:id="redoMenuButton" onAction="#handleEditAction"/>
+            <MenuItem mnemonicParsing="false" text="Cut" fx:id="cutMenuButton" onAction="#handleEditAction"/>
+            <MenuItem mnemonicParsing="false" text="Copy" fx:id="copyMenuButton" onAction="#handleEditAction"/>
+            <MenuItem mnemonicParsing="false" text="Paste" fx:id="pasteMenuButton" onAction="#handleEditAction"/>
+            <MenuItem mnemonicParsing="false" text="Select all" fx:id="selectAllMenuButton" onAction="#handleEditAction"/>
+        </Menu>
+    </MenuBar>
+    <ToolBar prefHeight="40.0" prefWidth="640.0">
+        <Button mnemonicParsing="false" text="Hello" fx:id="helloButton" onAction="#handleHelloButtonAction"/>
+        <Button mnemonicParsing="false" text="Goodbye" fx:id="goodbyeButton" onAction="#handleGoodbyeButtonAction"/>
+    </ToolBar>
+    <TabPane fx:id="tabPane" VBox.vgrow="ALWAYS">
+    </TabPane>
+</VBox>
