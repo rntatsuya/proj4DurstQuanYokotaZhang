@@ -29,11 +29,13 @@ import javafx.fxml.FXML;
 import javafx.stage.FileChooser;
 import org.fxmisc.flowless.VirtualizedScrollPane;
 import org.fxmisc.richtext.CodeArea;
+import org.fxmisc.richtext.LineNumberFactory;
 import org.fxmisc.richtext.model.StyleSpans;
 import org.fxmisc.richtext.model.StyleSpansBuilder;
 
 import java.nio.file.Paths;
 import java.nio.file.Files;
+import java.util.function.IntFunction;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -59,7 +61,7 @@ public class Controller{
             "new", "package", "private", "protected", "public",
             "return", "short", "static", "strictfp", "super",
             "switch", "synchronized", "this", "throw", "throws",
-            "transient", "try", "void", "volatile", "while"
+            "transient", "try", "void", "volatile", "while", "var"
     };
 
     private static final String KEYWORD_PATTERN = "\\b(" + String.join("|", KEYWORDS) + ")\\b";
@@ -190,7 +192,9 @@ public class Controller{
         // instantiate the CodeArea
         CodeArea codeArea = new CodeArea();
         VirtualizedScrollPane scrollPane = new VirtualizedScrollPane<>(codeArea);
-        //codeArea.setText("Sample text");
+        codeArea.textProperty().addListener((obs, oldText, newText) -> {
+            codeArea.setStyleSpans(0, computeHighlighting(newText));
+        });
 
         // add TextArea to tab
         tab.setContent(scrollPane);
