@@ -179,8 +179,8 @@ public class Controller{
                 TextArea textArea = (TextArea) tab.getContent();
                 writer.write(textArea.getText());
                 writer.close();
-                tab.setUserData(file.toString());
-                tab.setText(file.toString());
+                tab.setUserData(file.getAbsolutePath());
+                tab.setText(file.getName());
 
                  // add TextArea to hashmap
                  savedCache.append(textArea.getId(),  textArea.getText());
@@ -344,9 +344,9 @@ public class Controller{
             try {
                 String fileText = getFileContentString(file);
                 textArea.setText(fileText);
-                tab.setText(file.getAbsolutePath());
                 tab.setUserData(file.getAbsolutePath());
-
+                tab.setText(file.getName());
+                
                 // Set a unique Id for the thing
                 String id = UUID.randomUUID().toString();
                 textArea.setId(id);
