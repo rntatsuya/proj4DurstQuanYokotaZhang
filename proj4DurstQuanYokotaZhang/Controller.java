@@ -11,6 +11,7 @@
 package proj4DurstQuanYokotaZhang;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -21,6 +22,8 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
+
+import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser.ExtensionFilter;
 import java.util.UUID;
 import javafx.fxml.FXML;
@@ -170,6 +173,8 @@ public class Controller{
 
         // add scrollPane to tab
         tab.setContent(scrollPane);
+
+
 
         // Set a unique Id for the CodeArea
         String id = UUID.randomUUID().toString();
@@ -367,22 +372,11 @@ public class Controller{
         //Show save file dialog
         File file = fileChooser.showOpenDialog(null);
         if(file != null){
-            // create a new tab
-            Tab tab = new Tab();
 
-            // add tab to tab pane
-            tabPane.getTabs().add(tab);
-
-            // set new tab as the focused on tab
-            tabPane.getSelectionModel().select(tab);
-
-            // instantiate the CodeArea
-            CodeArea codeArea = new CodeArea();
-            VirtualizedScrollPane scrollPane = new VirtualizedScrollPane<>(codeArea);
-            codeArea.textProperty().addListener((obs, oldText, newText) -> {
-                codeArea.setStyleSpans(0, computeHighlighting(newText));
-            });
-            tab.setContent(scrollPane);
+            //Got rid of some duplicate code here
+            handleNewAction(event);
+            Tab tab = tabPane.getSelectionModel().getSelectedItem();
+            CodeArea codeArea = getCodeArea(tab);
 
             try {
                 String fileText = getFileContentString(file);
