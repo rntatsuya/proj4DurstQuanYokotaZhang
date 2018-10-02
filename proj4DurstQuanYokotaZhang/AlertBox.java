@@ -18,7 +18,7 @@ public class AlertBox {
      * fileNotFound displays an alert message warning the
      * user that the file they selected was not found.
      */
-    static void fileNotFound() {
+    public static void fileNotFound() {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("ERROR!");
         alert.setHeaderText("File not found, please select another one or try again.");
@@ -31,7 +31,7 @@ public class AlertBox {
      * user about who is responsible for this elegant work of
      * art.
      */
-    static void aboutUs() {
+    public static void aboutUs() {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("About us");
         alert.setHeaderText("Some information about us...");
@@ -44,7 +44,7 @@ public class AlertBox {
      * closeTab displays an alert message presenting the user
      * with three options for dealing with an open tab.
      */
-    static ButtonType closeTab() {
+    public static ButtonType closeTab() {
         Alert alert = new Alert(
                 Alert.AlertType.CONFIRMATION,
                 "Want to save before exit?",
