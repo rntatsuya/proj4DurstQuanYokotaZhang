@@ -25,7 +25,6 @@ import java.util.Optional;
 
 import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser.ExtensionFilter;
-import java.util.UUID;
 import javafx.fxml.FXML;
 import javafx.stage.FileChooser;
 import org.fxmisc.flowless.VirtualizedScrollPane;
@@ -173,12 +172,6 @@ public class Controller{
 
         // add scrollPane to tab
         tab.setContent(scrollPane);
-
-
-
-        // Set a unique Id for the CodeArea
-        String id = UUID.randomUUID().toString();
-        codeArea.setId(id);
     }
 
     /**
@@ -210,11 +203,10 @@ public class Controller{
                 CodeArea codeArea = getCodeArea(tab);
                 writer.write(codeArea.getText());
                 writer.close();
-                tab.setUserData(file.getAbsolutePath());
                 tab.setText(file.getName());
 
                 // add CodeArea to hashmap
-                savedCache.append(codeArea.getId(),  codeArea.getText());
+                savedCache.add(codeArea, codeArea.getText(), file.getAbsolutePath());
                 return true;
             }
             catch(IOException e){
@@ -250,7 +242,7 @@ public class Controller{
                 writer.close();
 
                 // add CodeArea to hashmap
-                savedCache.append(codeArea.getId(),  codeArea.getText());
+                savedCache.updateContent(codeArea,  codeArea.getText());
 
                 return true;
 
@@ -292,9 +284,9 @@ public class Controller{
         CodeArea codeArea = getCodeArea(tab);
 
         // check if (a) and (b)
-        if (savedCache.tabHasChanged(codeArea.getId(), codeArea.getText())) {
+        if (savedCache.hasChanged(codeArea, codeArea.getText())) {
             tabPane.getTabs().remove(tab);
-            savedCache.remove(codeArea.getId());
+            savedCache.remove(codeArea);
             return false;
         }
 
@@ -308,7 +300,7 @@ public class Controller{
             if (didSave) {
                 // remove tab from cache since saving it adds it
                 // to the cache
-                savedCache.remove(codeArea.getId());
+                savedCache.remove(codeArea);
                 tabPane.getTabs().remove(tab);
             }
         } else if(res == ButtonType.NO){
@@ -381,15 +373,10 @@ public class Controller{
             try {
                 String fileText = getFileContentString(file);
                 codeArea.replaceText(0, codeArea.getLength(), fileText);
-                tab.setUserData(file.getAbsolutePath());
                 tab.setText(file.getName());
 
-                // Set a unique Id for the thing
-                String id = UUID.randomUUID().toString();
-                codeArea.setId(id);
-
                 // add CodeArea to hashmap
-                savedCache.append(codeArea.getId(), codeArea.getText());
+                savedCache.add(codeArea, codeArea.getText(), file.getAbsolutePath());
             } catch (IOException e) {
                 AlertBox.fileNotFound();
             }

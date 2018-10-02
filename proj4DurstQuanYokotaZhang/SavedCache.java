@@ -3,26 +3,26 @@ package proj4DurstQuanYokotaZhang;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
+import org.fxmisc.richtext.CodeArea;
 
 public class SavedCache {
     /** Keep a cache of opened/saved tabs
-     *      key   - TextArea id
+     *      key   - pointer to CodeArea
      *      value - SHA256(TextArea text)  
      */ 
-    private HashMap<String, String> cache;
+    private HashMap<CodeArea, TabData> cache;
 
     SavedCache() {
         this.cache = new HashMap<>();
     }
 
-    /**
-     * Updates/adds a textarea's content to the cache.
-     * 
-     * @param key   String id of the textArea
-     * @param value String content of the textArea
-     */
-    void append(String key, String value) {
-        this.cache.put(key, hashAString(value));
+
+    void add(CodeArea key, String content, String filepath) {
+        this.cache.put(key, new TabData(filepath, hashAString(content)));
+    }
+
+    void updateContent(CodeArea key, String content) {
+        this.cache.get(key).ContentHash = hashAString(content);
     }
 
     /**
@@ -30,7 +30,7 @@ public class SavedCache {
      * 
      * @param key String id of the textArea
      */
-    void remove(String key) {    
+    void remove(CodeArea key) {
         this.cache.remove(key);
     }
 
@@ -41,10 +41,10 @@ public class SavedCache {
      * @return      boolean whether the textArea's id is in the cache 
      *                      the textArea's value hasn't changed
      */
-    boolean tabHasChanged(String key, String value) {
+    boolean hasChanged(CodeArea key, String value) {
         String hashedText = hashAString(value);
 
-        return this.cache.containsKey(key) && this.cache.get(key).equals(hashedText);
+        return this.cache.containsKey(key) && this.cache.get(key).ContentHash.equals(hashedText);
     }
 
     /**
@@ -67,5 +67,16 @@ public class SavedCache {
           }
 
         return result;
+    }
+
+    // I wish we had structs
+    public class TabData {
+        public String FilePath;
+        public String ContentHash;
+
+        TabData(String filepath, String contenthash) {
+            this.FilePath = filepath;
+            this.ContentHash = contenthash;
+        }
     }
 }
