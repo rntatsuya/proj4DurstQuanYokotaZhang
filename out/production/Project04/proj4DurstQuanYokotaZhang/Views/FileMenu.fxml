@@ -3,7 +3,7 @@
 <!--imported packages-->
 <?import javafx.scene.control.*?>
 
-<Menu mnemonicParsing="false" text="File"  fx:controller="proj4DurstQuanYokotaZhang.Controller" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Menu mnemonicParsing="false" text="File" fx:controller="proj4DurstQuanYokotaZhang.FileMenuController" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <MenuItem mnemonicParsing="false" text="About..." fx:id="aboutButton" onAction="#handleAboutAction" />
     <SeparatorMenuItem/>
     <MenuItem mnemonicParsing="false" text="New" fx:id="newMenuButton" onAction="#handleNewAction" accelerator="Shortcut+N"/>

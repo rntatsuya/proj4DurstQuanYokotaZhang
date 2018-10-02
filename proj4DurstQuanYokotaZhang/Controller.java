@@ -119,198 +119,198 @@ public class Controller{
 //        goodbyeButton.setText("Yah, sure!");
 //    }
 
-    /**
-     * Exit the program. Calls a handleClose method for all
-     * tabs in tab pane to ask if it needs to be saved. Goes
-     * through all tabs from right to left.
-     *
-     * @param event ActionEvent object
-     */
-    @FXML void handleExitAction(ActionEvent event) {
-        for (int i =  tabPane.getTabs().size() - 1; i != -1; i--){
-            // make sure the currently selected tab, by index and by focus,
-            // are in sync
-            tabPane.getSelectionModel().select(tabPane.getTabs().get(i));
-            boolean shouldBreak = handleClose(tabPane.getTabs().get(i), event);
-
-            // if cancel is selected, break
-            if (shouldBreak) {
-                break;
-            }
-        }
-
-        if(tabPane.getTabs().size() == 0){
-            System.exit(0);
-        }
-    }
-
-    /**
-     * Create a new tab named 'New file' with a text area.
-     *
-     * @param event ActionEvent object
-     */
-    @FXML void handleNewAction(ActionEvent event) {
-        // instantiate a new Tab
-        Tab tab = new Tab();
-        tab.setText("New file");
-
-        System.out.println(tabPane);
-        //System.out.println(goodbyeButton);
-
-        // add to tabPane
-//        tabPane.getTabs().add(tab);
-
-//        // set the new tab as the focus
-//        tabPane.getSelectionModel().select(tab);
+//    /**
+//     * Exit the program. Calls a handleClose method for all
+//     * tabs in tab pane to ask if it needs to be saved. Goes
+//     * through all tabs from right to left.
+//     *
+//     * @param event ActionEvent object
+//     */
+//    @FXML void handleExitAction(ActionEvent event) {
+//        for (int i =  tabPane.getTabs().size() - 1; i != -1; i--){
+//            // make sure the currently selected tab, by index and by focus,
+//            // are in sync
+//            tabPane.getSelectionModel().select(tabPane.getTabs().get(i));
+//            boolean shouldBreak = handleClose(tabPane.getTabs().get(i), event);
 //
-//        // instantiate the CodeArea
-//        CodeArea codeArea = new CodeArea();
-//        VirtualizedScrollPane scrollPane = new VirtualizedScrollPane<>(codeArea);
-//        codeArea.textProperty().addListener((obs, oldText, newText) -> {
-//            codeArea.setStyleSpans(0, computeHighlighting(newText));
-//        });
+//            // if cancel is selected, break
+//            if (shouldBreak) {
+//                break;
+//            }
+//        }
 //
-//        // add scrollPane to tab
-//        tab.setContent(scrollPane);
-    }
+//        if(tabPane.getTabs().size() == 0){
+//            System.exit(0);
+//        }
+//    }
 
-    /**
-     * Create and oepn a dialog that displays information about
-     * the program.
-     *
-     * @param event ActionEvent object
-     */
-    @FXML void handleAboutAction(ActionEvent event) {
-        AlertBox.aboutUs();
-    }
-
-    /**
-     * Opens a save dialog for the user to specify a filename and
-     * directory, then writes the new file
-     *
-     * @param event ActionEvent object
-     * @return boolean returns true if the file saved, false otherwise
-     */
-    @FXML boolean handleSaveAsAction(ActionEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("save the file as...");
-        File file = fileChooser.showSaveDialog(null);
-
-        if (file != null){
-            try{
-                BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-                Tab tab = tabPane.getSelectionModel().getSelectedItem();
-                CodeArea codeArea = getCodeArea(tab);
-                writer.write(codeArea.getText());
-                writer.close();
-                tab.setText(file.getName());
-
-                // add CodeArea to hashmap
-                savedCache.add(codeArea, codeArea.getText(), file.getAbsolutePath());
-                return true;
-            }
-            catch(IOException e){
-                System.out.println(e.getMessage());
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
-
-
-    /**
-     * Saves updates to pre-existing file, or if not previously
-     * saved, opens a save dialog for the user to specify a filename
-     * and directory, then writes the new file
-     * @param event ActionEvent object
-     * @return boolean returns true if the file saved, false otherwise
-     */
-    @FXML boolean handleSaveAction(ActionEvent event) {
-        Tab tab = tabPane.getSelectionModel().getSelectedItem();
-        String fileName = (String)tab.getUserData();
-
-        //handle as unsaved file
-        if (fileName == null) {
-            return handleSaveAsAction(event);
-        } else {
-            //handle as previously saved file
-            try {
-                BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
-                CodeArea codeArea = getCodeArea(tab);
-                writer.write(codeArea.getText());
-                writer.close();
-
-                // add CodeArea to hashmap
-                savedCache.updateContent(codeArea,  codeArea.getText());
-
-                return true;
-
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-                return false;
-            }
-        }
-    }
-
-    /**
-     * Executes when close menu button selected.
-     *
-     * @param event ActionEvent object
-     */
-    @FXML void handleCloseAction(ActionEvent event) {
-        Tab thisTab = tabPane.getSelectionModel().getSelectedItem();
-        handleClose(thisTab, event);
-    }
-
-    /**
-     * Checks against the tabContentCache if:
-     *      a) the current tab has been saved yet
-     *      b) the current tab has changed since last save
-     *
-     * This method utilizes the tabContentCache for quick
-     * and efficient lookups.
-     *
-     * If the tab hasn't been saved, or has changed since last
-     * save, then it asks the user if he/she wants to save the
-     * tab's CodeArea's contents before closing it.
-     *
-     * @param event    ActionEvent object
-     * @param tab  Tab object
-     * @return boolean returns true if user hits cancel and the
-     *                 exit method should halt
-     */
-    boolean handleClose(Tab tab, ActionEvent event){
-        CodeArea codeArea = getCodeArea(tab);
-
-        // check if (a) and (b)
-        if (savedCache.hasChanged(codeArea, codeArea.getText())) {
-            tabPane.getTabs().remove(tab);
-            savedCache.remove(codeArea);
-            return false;
-        }
-
-        ButtonType res = AlertBox.closeTab();
-
-        // handle user response
-        if(res == ButtonType.YES){
-            boolean didSave = handleSaveAction(event);
-
-            // only need to remove tab if it has been saved
-            if (didSave) {
-                // remove tab from cache since saving it adds it
-                // to the cache
-                savedCache.remove(codeArea);
-                tabPane.getTabs().remove(tab);
-            }
-        } else if(res == ButtonType.NO){
-            tabPane.getTabs().remove(tab);
-        } else if (res == ButtonType.CANCEL) {
-            return true;
-        }
-
-        return false;
-    }
+//    /**
+//     * Create a new tab named 'New file' with a text area.
+//     *
+//     * @param event ActionEvent object
+//     */
+//    @FXML void handleNewAction(ActionEvent event) {
+//        // instantiate a new Tab
+//        Tab tab = new Tab();
+//        tab.setText("New file");
+//
+//        System.out.println(tabPane);
+//        //System.out.println(goodbyeButton);
+//
+//        // add to tabPane
+////        tabPane.getTabs().add(tab);
+//
+////        // set the new tab as the focus
+////        tabPane.getSelectionModel().select(tab);
+////
+////        // instantiate the CodeArea
+////        CodeArea codeArea = new CodeArea();
+////        VirtualizedScrollPane scrollPane = new VirtualizedScrollPane<>(codeArea);
+////        codeArea.textProperty().addListener((obs, oldText, newText) -> {
+////            codeArea.setStyleSpans(0, computeHighlighting(newText));
+////        });
+////
+////        // add scrollPane to tab
+////        tab.setContent(scrollPane);
+//    }
+//
+//    /**
+//     * Create and oepn a dialog that displays information about
+//     * the program.
+//     *
+//     * @param event ActionEvent object
+//     */
+//    @FXML void handleAboutAction(ActionEvent event) {
+//        AlertBox.aboutUs();
+//    }
+//
+//    /**
+//     * Opens a save dialog for the user to specify a filename and
+//     * directory, then writes the new file
+//     *
+//     * @param event ActionEvent object
+//     * @return boolean returns true if the file saved, false otherwise
+//     */
+//    @FXML boolean handleSaveAsAction(ActionEvent event) {
+//        FileChooser fileChooser = new FileChooser();
+//        fileChooser.setTitle("save the file as...");
+//        File file = fileChooser.showSaveDialog(null);
+//
+//        if (file != null){
+//            try{
+//                BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+//                Tab tab = tabPane.getSelectionModel().getSelectedItem();
+//                CodeArea codeArea = getCodeArea(tab);
+//                writer.write(codeArea.getText());
+//                writer.close();
+//                tab.setText(file.getName());
+//
+//                // add CodeArea to hashmap
+//                savedCache.add(codeArea, codeArea.getText(), file.getAbsolutePath());
+//                return true;
+//            }
+//            catch(IOException e){
+//                System.out.println(e.getMessage());
+//                return false;
+//            }
+//        } else {
+//            return false;
+//        }
+//    }
+//
+//
+//    /**
+//     * Saves updates to pre-existing file, or if not previously
+//     * saved, opens a save dialog for the user to specify a filename
+//     * and directory, then writes the new file
+//     * @param event ActionEvent object
+//     * @return boolean returns true if the file saved, false otherwise
+//     */
+//    @FXML boolean handleSaveAction(ActionEvent event) {
+//        Tab tab = tabPane.getSelectionModel().getSelectedItem();
+//        String fileName = (String)tab.getUserData();
+//
+//        //handle as unsaved file
+//        if (fileName == null) {
+//            return handleSaveAsAction(event);
+//        } else {
+//            //handle as previously saved file
+//            try {
+//                BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+//                CodeArea codeArea = getCodeArea(tab);
+//                writer.write(codeArea.getText());
+//                writer.close();
+//
+//                // add CodeArea to hashmap
+//                savedCache.updateContent(codeArea,  codeArea.getText());
+//
+//                return true;
+//
+//            } catch (IOException e) {
+//                System.out.println(e.getMessage());
+//                return false;
+//            }
+//        }
+//    }
+//
+//    /**
+//     * Executes when close menu button selected.
+//     *
+//     * @param event ActionEvent object
+//     */
+//    @FXML void handleCloseAction(ActionEvent event) {
+//        Tab thisTab = tabPane.getSelectionModel().getSelectedItem();
+//        handleClose(thisTab, event);
+//    }
+//
+//    /**
+//     * Checks against the tabContentCache if:
+//     *      a) the current tab has been saved yet
+//     *      b) the current tab has changed since last save
+//     *
+//     * This method utilizes the tabContentCache for quick
+//     * and efficient lookups.
+//     *
+//     * If the tab hasn't been saved, or has changed since last
+//     * save, then it asks the user if he/she wants to save the
+//     * tab's CodeArea's contents before closing it.
+//     *
+//     * @param event    ActionEvent object
+//     * @param tab  Tab object
+//     * @return boolean returns true if user hits cancel and the
+//     *                 exit method should halt
+//     */
+//    boolean handleClose(Tab tab, ActionEvent event){
+//        CodeArea codeArea = getCodeArea(tab);
+//
+//        // check if (a) and (b)
+//        if (savedCache.hasChanged(codeArea, codeArea.getText())) {
+//            tabPane.getTabs().remove(tab);
+//            savedCache.remove(codeArea);
+//            return false;
+//        }
+//
+//        ButtonType res = AlertBox.closeTab();
+//
+//        // handle user response
+//        if(res == ButtonType.YES){
+//            boolean didSave = handleSaveAction(event);
+//
+//            // only need to remove tab if it has been saved
+//            if (didSave) {
+//                // remove tab from cache since saving it adds it
+//                // to the cache
+//                savedCache.remove(codeArea);
+//                tabPane.getTabs().remove(tab);
+//            }
+//        } else if(res == ButtonType.NO){
+//            tabPane.getTabs().remove(tab);
+//        } else if (res == ButtonType.CANCEL) {
+//            return true;
+//        }
+//
+//        return false;
+//    }
 
     /**
      * Responds to user clicks for each menu item under the edit
@@ -347,42 +347,42 @@ public class Controller{
                 System.out.println("Unexpected event!");
         }
     }
-
-    /**
-     * Presents user with option to open a (txt) file from their
-     * local directory and then displays the text of the file in
-     * a new tab.
-     *
-     * @param event ActionEvent object
-     */
-    @FXML void handleOpenAction(ActionEvent event){
-        // instantiate and define a filechooser
-        FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Java files (*.java)", "*.java");
-        fileChooser.getExtensionFilters().add(filter);
-
-        //Show save file dialog
-        File file = fileChooser.showOpenDialog(null);
-        if(file != null){
-
-            //Got rid of some duplicate code here
-            handleNewAction(event);
-            Tab tab = tabPane.getSelectionModel().getSelectedItem();
-            CodeArea codeArea = getCodeArea(tab);
-
-            try {
-                String fileText = getFileContentString(file);
-                codeArea.replaceText(0, codeArea.getLength(), fileText);
-                tab.setText(file.getName());
-
-                // add CodeArea to hashmap
-                savedCache.add(codeArea, codeArea.getText(), file.getAbsolutePath());
-            } catch (IOException e) {
-                AlertBox.fileNotFound();
-            }
-
-        }
-    }
+//
+//    /**
+//     * Presents user with option to open a (txt) file from their
+//     * local directory and then displays the text of the file in
+//     * a new tab.
+//     *
+//     * @param event ActionEvent object
+//     */
+//    @FXML void handleOpenAction(ActionEvent event){
+//        // instantiate and define a filechooser
+//        FileChooser fileChooser = new FileChooser();
+//        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Java files (*.java)", "*.java");
+//        fileChooser.getExtensionFilters().add(filter);
+//
+//        //Show save file dialog
+//        File file = fileChooser.showOpenDialog(null);
+//        if(file != null){
+//
+//            //Got rid of some duplicate code here
+//            handleNewAction(event);
+//            Tab tab = tabPane.getSelectionModel().getSelectedItem();
+//            CodeArea codeArea = getCodeArea(tab);
+//
+//            try {
+//                String fileText = getFileContentString(file);
+//                codeArea.replaceText(0, codeArea.getLength(), fileText);
+//                tab.setText(file.getName());
+//
+//                // add CodeArea to hashmap
+//                savedCache.add(codeArea, codeArea.getText(), file.getAbsolutePath());
+//            } catch (IOException e) {
+//                AlertBox.fileNotFound();
+//            }
+//
+//        }
+//    }
 
 
     private CodeArea getCodeArea(Tab tab){
