@@ -21,7 +21,7 @@ public class SavedCache {
      */ 
     private HashMap<CodeArea, TabData> cache;
 
-    SavedCache() {
+    public SavedCache() {
         this.cache = new HashMap<>();
     }
 

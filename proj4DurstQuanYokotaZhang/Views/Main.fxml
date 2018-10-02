@@ -10,10 +10,10 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" stylesheets="@../Main.css" fx:controller="proj4DurstQuanYokotaZhang.Controller" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:id="VBox" >
+<VBox prefHeight="400.0" prefWidth="640.0" stylesheets="@../Main.css" fx:controller="proj4DurstQuanYokotaZhang.Controllers.MainController" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:id="VBox" >
     <MenuBar VBox.vgrow="NEVER">
         <fx:include source="FileMenu.fxml" />
-        <fx:include source="EditMenu.fxml" />
+        <fx:include fx:id="editMenu" source="EditMenu.fxml" />
     </MenuBar>
     <fx:include source="ToolBar.fxml" />
     <fx:include source="TabPane.fxml" />
