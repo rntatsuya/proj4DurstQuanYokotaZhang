@@ -1,3 +1,12 @@
+/*
+ * File: SavedCache.java
+ * Names: Robert Durst, Tracy Quan, Tatsuya Yokota, Tia Zhang
+ * F18 CS361 Project 4
+ * This file stores the hashmap for whether code areas have been saved or not
+ * Date: 10/03/2018
+ */
+
+
 package proj4DurstQuanYokotaZhang;
 
 import java.security.MessageDigest;

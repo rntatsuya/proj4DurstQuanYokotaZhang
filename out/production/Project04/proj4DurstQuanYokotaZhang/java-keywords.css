@@ -1,13 +1,3 @@
-/*
- * File: Main.css
- * Names: Robert Durst, Tracy Quan, Tatsuya Yokota, Tia Zhang
- * F18 CS361 Project 4
- * Style sheet for text in code areas
- * Modified off RichTextFX's Async Demo CSS file
- * Date: 10/03/2018
- */
-
-
 .keyword {
     -fx-fill: purple;
     -fx-font-weight: bold;

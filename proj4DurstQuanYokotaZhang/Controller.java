@@ -2,10 +2,11 @@
  * File: Controller.java
  * Names: (Proj 1-2) Liwei Jiang, Yi Feng, Jackie Hang, Paige Hanssen
  *        (Proj 3) Yi Feng, Melody Mao, Danqing Zhao, Robert Durst
- * F18 CS361 Project 3
+ *        (Proj 4) Robert Durst, Tracy Quan, Tatsuya Yokota, Tia Zhang
+ * F18 CS361 Project 4
  * This file contains the controller methods that define the functionality
  * for the window elements in Main.fxml.
- * Date: 09/25/2018
+ * Date: 10/03/2018
  */
 
 package proj4DurstQuanYokotaZhang;

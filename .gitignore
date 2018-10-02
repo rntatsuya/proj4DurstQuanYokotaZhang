@@ -22,6 +22,10 @@ proj4DurstQuanYokotaZhang/*.rar
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+<<<<<<< HEAD
 /out
 
 /.idea
+=======
+out
+>>>>>>> 3890a96fea68ab6de8eba97e3190d0c4f10b3f99
