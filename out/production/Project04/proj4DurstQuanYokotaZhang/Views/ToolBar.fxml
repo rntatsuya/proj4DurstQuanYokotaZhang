@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--imported packages-->
+<?import javafx.scene.control.*?>
+
+<ToolBar prefHeight="40.0" prefWidth="640.0" fx:controller="proj4DurstQuanYokotaZhang.Controller" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <Button mnemonicParsing="false" text="Hello" fx:id="helloButton" onAction="#handleHelloButtonAction"/>
+    <Button mnemonicParsing="false" text="Goodbye" fx:id="goodbyeButton" onAction="#handleGoodbyeButtonAction"/>
+</ToolBar>

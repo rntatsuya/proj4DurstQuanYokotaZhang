@@ -92,10 +92,6 @@ public class Controller{
     );
 
 
-
-
-
-
     /**
      * Create a dialog that takes in an integer between 0 and 255,
      * and set the hello button text to the entered number
@@ -158,21 +154,24 @@ public class Controller{
         Tab tab = new Tab();
         tab.setText("New file");
 
+        System.out.println(tabPane);
+        System.out.println(goodbyeButton);
+
         // add to tabPane
-        tabPane.getTabs().add(tab);
+//        tabPane.getTabs().add(tab);
 
-        // set the new tab as the focus
-        tabPane.getSelectionModel().select(tab);
-
-        // instantiate the CodeArea
-        CodeArea codeArea = new CodeArea();
-        VirtualizedScrollPane scrollPane = new VirtualizedScrollPane<>(codeArea);
-        codeArea.textProperty().addListener((obs, oldText, newText) -> {
-            codeArea.setStyleSpans(0, computeHighlighting(newText));
-        });
-
-        // add scrollPane to tab
-        tab.setContent(scrollPane);
+//        // set the new tab as the focus
+//        tabPane.getSelectionModel().select(tab);
+//
+//        // instantiate the CodeArea
+//        CodeArea codeArea = new CodeArea();
+//        VirtualizedScrollPane scrollPane = new VirtualizedScrollPane<>(codeArea);
+//        codeArea.textProperty().addListener((obs, oldText, newText) -> {
+//            codeArea.setStyleSpans(0, computeHighlighting(newText));
+//        });
+//
+//        // add scrollPane to tab
+//        tab.setContent(scrollPane);
     }
 
     /**

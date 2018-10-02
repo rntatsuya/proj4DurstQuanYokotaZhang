@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--imported packages-->
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+
+
+<Menu mnemonicParsing="false" text="Edit" fx:controller="proj4DurstQuanYokotaZhang.Controller" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <MenuItem mnemonicParsing="false" text="Undo" fx:id="undoMenuButton" onAction="#handleEditAction" accelerator="Shortcut+Z"/>
+    <MenuItem mnemonicParsing="false" text="Redo" fx:id="redoMenuButton" onAction="#handleEditAction" accelerator="Shortcut+Y"/>
+    <MenuItem mnemonicParsing="false" text="Cut" fx:id="cutMenuButton" onAction="#handleEditAction" accelerator="Shortcut+X"/>
+    <MenuItem mnemonicParsing="false" text="Copy" fx:id="copyMenuButton" onAction="#handleEditAction" accelerator="Shortcut+C"/>
+    <MenuItem mnemonicParsing="false" text="Paste" fx:id="pasteMenuButton" onAction="#handleEditAction" accelerator="Shortcut+V"/>
+    <MenuItem mnemonicParsing="false" text="Select all" fx:id="selectAllMenuButton" onAction="#handleEditAction" accelerator="Shortcut+A"/>
+</Menu>
