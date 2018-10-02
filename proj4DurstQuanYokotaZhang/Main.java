@@ -34,13 +34,12 @@ public class Main extends Application {
      */
     @Override public void start(Stage stage) throws Exception{
         // load the fxml file and get the root
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/Main.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Resources/Views/Main.fxml"));
         Parent root = loader.load();
 
-
-        // initialize a scene and the css file
+       // initialize a scene and the css file
         Scene scene = new Scene(root, 300, 250);
-        scene.getStylesheets().add("proj4DurstQuanYokotaZhang/java-keywords.css");
+        scene.getStylesheets().add("proj4DurstQuanYokotaZhang/Resources/CSS/java-keywords.css");
 
         // configure the stage
         stage.setTitle("DurstQuanYokotaZhang's Project ");

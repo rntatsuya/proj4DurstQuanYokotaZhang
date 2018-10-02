@@ -7,7 +7,7 @@
  */
 
 
-package proj4DurstQuanYokotaZhang;
+package proj4DurstQuanYokotaZhang.Common;
 
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;

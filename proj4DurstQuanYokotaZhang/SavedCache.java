@@ -26,11 +26,11 @@ public class SavedCache {
     }
 
 
-    void add(CodeArea key, String content, String filepath) {
+    public void add(CodeArea key, String content, String filepath) {
         this.cache.put(key, new TabData(filepath, hashAString(content)));
     }
 
-    void updateContent(CodeArea key, String content) {
+    public void updateContent(CodeArea key, String content) {
         this.cache.get(key).ContentHash = hashAString(content);
     }
 
@@ -39,7 +39,7 @@ public class SavedCache {
      * 
      * @param key String id of the textArea
      */
-    void remove(CodeArea key) {
+    public void remove(CodeArea key) {
         this.cache.remove(key);
     }
 
@@ -50,7 +50,7 @@ public class SavedCache {
      * @return      boolean whether the textArea's id is in the cache 
      *                      the textArea's value hasn't changed
      */
-    boolean hasChanged(CodeArea key, String value) {
+    public boolean hasChanged(CodeArea key, String value) {
         String hashedText = hashAString(value);
 
         return this.cache.containsKey(key) && this.cache.get(key).ContentHash.equals(hashedText);
