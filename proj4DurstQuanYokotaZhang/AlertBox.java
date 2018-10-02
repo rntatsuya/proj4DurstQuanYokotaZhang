@@ -1,3 +1,12 @@
+/*
+ * File: AlertBox.java
+ * Names: Robert Durst, Tracy Quan, Tatsuya Yokota, Tia Zhang
+ * F18 CS361 Project 4
+ * This file stores the warning and information pop-ups triggered by user actions
+ * Date: 10/03/2018
+ */
+
+
 package proj4DurstQuanYokotaZhang;
 
 import javafx.scene.control.*;
@@ -26,7 +35,7 @@ public class AlertBox {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("About us");
         alert.setHeaderText("Some information about us...");
-        alert.setContentText("Authors:\nRobert Durst, Yi Feng,Melody Mao, Danqing Zhao\njoyful programmers who code happily together everyday :)");
+        alert.setContentText("Authors:\nRobert Durst, Tracy Quan, Tatsuya Yokota, Tia Zhang\nJoyful programmers who code happily together everyday :)");
 
         alert.showAndWait();
     }
