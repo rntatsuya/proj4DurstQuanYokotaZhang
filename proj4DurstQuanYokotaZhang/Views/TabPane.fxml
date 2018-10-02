@@ -6,12 +6,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="proj4DurstQuanYokotaZhang.Views.TabPane"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
 
 
 <TabPane fx:id="tabPane" VBox.vgrow="ALWAYS"  fx:controller="proj4DurstQuanYokotaZhang.Controller" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
