@@ -15,7 +15,6 @@
     /* set button border to bold */
     -fx-border-radius: 5; 
 }
-
 /* style of Goodbye button */
 #goodbyeButton {
 	/* set button color to blue */

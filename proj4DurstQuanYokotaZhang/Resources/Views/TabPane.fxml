@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<!--File: Main.fxml-->
+<!--Names: Robert Durst, Tracy Quan, Tatsuya Yokota, Tia Zhang-->
+<!--F18 CS361-->
+<!--Project 4-->
+<!--Date: 10/3/2018-->
+
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-
 
 <TabPane fx:id="tabPane" VBox.vgrow="ALWAYS" fx:controller="proj4DurstQuanYokotaZhang.Controllers.TabPaneController" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
 </TabPane>
