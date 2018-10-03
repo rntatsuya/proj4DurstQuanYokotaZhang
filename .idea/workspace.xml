@@ -105,22 +105,22 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="10" />
+          <entry key="java" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="10" />
+          <entry key="JAVA" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="1180" />
+          <entry key="java" value="1256" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="1180" />
+          <entry key="JAVA" value="1256" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -132,53 +132,28 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Main.java">
+        <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Common/AlertBox.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-              <folding>
-                <element signature="e#0#1984#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="195">
+              <caret line="20" column="20" lean-forward="true" selection-start-line="17" selection-start-column="3" selection-end-line="20" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/RichText.java">
+        <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Common/Messages.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="16" column="20" lean-forward="true" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+            <state relative-caret-position="165">
+              <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/SavedCache.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-              <folding>
-                <element signature="e#0#2774#0" expanded="true" />
-                <element signature="e#856#857#0" expanded="true" />
-                <element signature="e#900#901#0" expanded="true" />
-                <element signature="e#2395#2396#0" expanded="true" />
-                <element signature="e#2433#2434#0" expanded="true" />
-                <element signature="e#4434#4435#0" expanded="true" />
-                <element signature="e#4481#4482#0" expanded="true" />
-                <element signature="e#4752#4753#0" expanded="true" />
-                <element signature="e#4801#4802#0" expanded="true" />
-                <element signature="e#5049#5050#0" expanded="true" />
-                <element signature="e#5088#5089#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Controllers/TabPaneController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3588">
-              <caret line="279" column="29" lean-forward="true" selection-start-line="279" selection-start-column="29" selection-end-line="279" selection-end-column="29" />
+            <state relative-caret-position="736">
+              <caret line="50" column="22" lean-forward="true" selection-start-line="50" selection-start-column="22" selection-end-line="50" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#4803#4804#0" expanded="true" />
@@ -189,10 +164,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Controllers/MainController.java">
+        <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Controllers/ToolBarController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="6" selection-start-line="6" selection-end-line="13" selection-end-column="3" />
+            <state relative-caret-position="-285">
+              <caret line="12" column="3" selection-start-line="12" selection-start-column="3" selection-end-line="15" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -200,39 +175,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Controllers/EditMenuController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
+            <state relative-caret-position="600">
               <caret line="42" column="7" lean-forward="true" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
-              <folding>
-                <element signature="e#1991#1992#0" expanded="true" />
-                <element signature="e#2043#2044#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Controllers/ToolBarController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-217">
-              <caret line="12" column="3" selection-start-line="12" selection-start-column="3" selection-end-line="15" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Common/AlertBox.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-855">
-              <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Common/Messages.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -240,24 +184,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Controllers/FileMenuController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-885">
+            <state relative-caret-position="194">
               <caret line="16" selection-start-line="16" selection-end-line="16" />
-              <folding>
-                <element signature="e#361#362#0" expanded="true" />
-                <element signature="e#395#396#0" expanded="true" />
-                <element signature="e#516#517#0" expanded="true" />
-                <element signature="e#599#600#0" expanded="true" />
-                <element signature="e#819#820#0" expanded="true" />
-                <element signature="e#903#904#0" expanded="true" />
-                <element signature="e#1083#1084#0" expanded="true" />
-                <element signature="e#1167#1168#0" expanded="true" />
-                <element signature="e#1214#1215#0" expanded="true" />
-                <element signature="e#1299#1300#0" expanded="true" />
-                <element signature="e#1345#1346#0" expanded="true" />
-                <element signature="e#1429#1430#0" expanded="true" />
-                <element signature="e#1500#1501#0" expanded="true" />
-                <element signature="e#1552#1553#0" expanded="true" />
-              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Controllers/MainController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="114">
+              <caret line="15" column="29" lean-forward="true" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -292,7 +229,6 @@
         <option value="$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Controller.java" />
         <option value="$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Main.java" />
         <option value="$PROJECT_DIR$/proj4DurstQuanYokotaZhang/java-keywords.css" />
-        <option value="$PROJECT_DIR$/proj4DurstQuanYokotaZhang/SavedCache.java" />
         <option value="$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Main.css" />
         <option value="$PROJECT_DIR$/proj4DurstQuanYokotaZhang/AlertBox.java" />
         <option value="$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Controllers/TabPaneController.java" />
@@ -302,6 +238,8 @@
         <option value="$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Controllers/MainController.java" />
         <option value="$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Controllers/FileMenuController.java" />
         <option value="$PROJECT_DIR$/proj4DurstQuanYokotaZhang/RichText.java" />
+        <option value="$PROJECT_DIR$/proj4DurstQuanYokotaZhang/SavedCache.java" />
+        <option value="$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Common/Messages.java" />
       </list>
     </option>
   </component>
@@ -333,6 +271,24 @@
             <path>
               <item name="proj4DurstQuanYokotaZhang" type="b2602c69:ProjectViewProjectNode" />
               <item name="proj4DurstQuanYokotaZhang" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="proj4DurstQuanYokotaZhang" type="b2602c69:ProjectViewProjectNode" />
+              <item name="proj4DurstQuanYokotaZhang" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="production" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="proj4DurstQuanYokotaZhang" type="b2602c69:ProjectViewProjectNode" />
+              <item name="proj4DurstQuanYokotaZhang" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="production" type="462c0819:PsiDirectoryNode" />
+              <item name="Project04" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="proj4DurstQuanYokotaZhang" type="b2602c69:ProjectViewProjectNode" />
+              <item name="proj4DurstQuanYokotaZhang" type="462c0819:PsiDirectoryNode" />
               <item name="proj4DurstQuanYokotaZhang" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -357,7 +313,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538538823231" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538539319675" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -424,16 +380,15 @@
       <option name="presentableId" value="Default" />
       <updated>1538349613095</updated>
       <workItem from="1538529596289" duration="49000" />
-      <workItem from="1538531647146" duration="7106000" />
+      <workItem from="1538531647146" duration="7580000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7155000" />
+    <option name="totallyTimeSpent" value="7629000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1280" height="726" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2584814" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -516,64 +471,10 @@
     <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/java-keywords.css" />
     <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Main.fxml" />
     <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/AlertBox.java" />
-    <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Controllers/ToolBarController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-217">
-          <caret line="12" column="3" selection-start-line="12" selection-start-column="3" selection-end-line="15" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Common/AlertBox.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-855">
-          <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Common/Messages.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Controllers/FileMenuController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-885">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="e#361#362#0" expanded="true" />
-            <element signature="e#395#396#0" expanded="true" />
-            <element signature="e#516#517#0" expanded="true" />
-            <element signature="e#599#600#0" expanded="true" />
-            <element signature="e#819#820#0" expanded="true" />
-            <element signature="e#903#904#0" expanded="true" />
-            <element signature="e#1083#1084#0" expanded="true" />
-            <element signature="e#1167#1168#0" expanded="true" />
-            <element signature="e#1214#1215#0" expanded="true" />
-            <element signature="e#1299#1300#0" expanded="true" />
-            <element signature="e#1345#1346#0" expanded="true" />
-            <element signature="e#1429#1430#0" expanded="true" />
-            <element signature="e#1500#1501#0" expanded="true" />
-            <element signature="e#1552#1553#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#1984#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/SavedCache.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        <state relative-caret-position="150">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
           <folding>
             <element signature="e#0#2774#0" expanded="true" />
             <element signature="e#856#857#0" expanded="true" />
@@ -592,38 +493,72 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/RichText.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
+        <state relative-caret-position="-771">
           <caret line="16" column="20" lean-forward="true" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Controllers/MainController.java">
+    <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="6" selection-start-line="6" selection-end-line="13" selection-end-column="3" />
+        <state relative-caret-position="345">
+          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#1984#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Controllers/EditMenuController.java">
+    <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Common/AlertBox.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="42" column="7" lean-forward="true" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
-          <folding>
-            <element signature="e#1991#1992#0" expanded="true" />
-            <element signature="e#2043#2044#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="195">
+          <caret line="20" column="20" lean-forward="true" selection-start-line="17" selection-start-column="3" selection-end-line="20" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Common/Messages.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Controllers/TabPaneController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3588">
-          <caret line="279" column="29" lean-forward="true" selection-start-line="279" selection-start-column="29" selection-end-line="279" selection-end-column="29" />
+        <state relative-caret-position="736">
+          <caret line="50" column="22" lean-forward="true" selection-start-line="50" selection-start-column="22" selection-end-line="50" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#4803#4804#0" expanded="true" />
             <element signature="e#4855#4856#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Controllers/ToolBarController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-285">
+          <caret line="12" column="3" selection-start-line="12" selection-start-column="3" selection-end-line="15" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Controllers/FileMenuController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Controllers/EditMenuController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="42" column="7" lean-forward="true" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/proj4DurstQuanYokotaZhang/Controllers/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="15" column="29" lean-forward="true" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
         </state>
       </provider>
     </entry>
