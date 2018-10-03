@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import proj4DurstQuanYokotaZhang.Common.Messages;
 
-
 /**
  * EditMenuController handles the actions of buttons in Edit menu.
  *
@@ -19,7 +18,7 @@ public class EditMenuController {
 
     /**
      * Handles the Undo button action in Edit Menu.
-     * Undo the actions in the cdoe area.
+     * Undo the actions in the code area.
      */
     @FXML void handleUndoAction(ActionEvent event){
         mainController.handleFileMenuToTabPane(Messages.TabPaneMessage.UNDO);

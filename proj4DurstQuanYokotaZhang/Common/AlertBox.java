@@ -15,7 +15,10 @@ import javafx.scene.control.Alert.AlertType;
  * AlertBox is a static class that instantiates and displays
  * various messages to the user via JavaFx's Alert object.
  *
- * @author  Robert Durst, Yi Feng, Melogy Mao, Danqing Zhao
+ * @author Robert Durst
+ * @author Tatsuya Yokota
+ * @author Tracy Quan
+ * @author Tia Zhang
  */
 public class AlertBox {
     /**
