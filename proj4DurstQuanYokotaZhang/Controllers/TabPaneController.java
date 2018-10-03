@@ -181,9 +181,8 @@ public class TabPaneController {
 
     boolean handleSaveAction() {
         Tab tab = tabPane.getSelectionModel().getSelectedItem();
-
-        // TODO: USE THE METHOD IN SAVEDCACHE
-        String fileName = (String)tab.getUserData();
+        
+        String fileName = mainController.savedCache.getFileName(getCodeArea(tab));
 
         //handle as unsaved file
         if (fileName == null) {

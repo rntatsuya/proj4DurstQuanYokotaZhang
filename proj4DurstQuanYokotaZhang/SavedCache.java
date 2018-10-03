@@ -34,6 +34,14 @@ public class SavedCache {
         this.cache.get(key).ContentHash = hashAString(content);
     }
 
+    public String getFileName(CodeArea key) {
+        if (this.cache.containsKey(key)) {
+            return this.cache.get(key).FilePath;
+        }
+
+        return null;
+    }
+
     /**
      * Removes a textarea's content to the cache.
      * 
