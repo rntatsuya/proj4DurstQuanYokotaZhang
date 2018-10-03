@@ -30,7 +30,7 @@ public class TabPaneController {
         Tab tab = new Tab();
         tab.setText("New file");
 
-//        add to tabPane
+        // add to tabPane
         tabPane.getTabs().add(tab);
 
         // set the new tab as the focus
@@ -123,6 +123,24 @@ public class TabPaneController {
                 break;
             case EXIT:
                 handleExitAction();
+                break;
+            case UNDO:
+                handleUndoAction();
+                break;
+            case REDO:
+                handleRedoAction();
+                break;
+            case PASTE:
+                handlePasteAction();
+                break;
+            case CUT:
+                handleCutAction();
+                break;
+            case COPY:
+                handleCopyAction();
+                break;
+            case SELECTALL:
+                handleSelectAll();
                 break;
         }
     }
@@ -234,5 +252,41 @@ public class TabPaneController {
         if(tabPane.getTabs().size() == 0){
             System.exit(0);
         }
+    }
+
+    void handleUndoAction() {
+        Tab tab = tabPane.getSelectionModel().getSelectedItem();
+        CodeArea codeArea = getCodeArea(tab);
+        codeArea.undo();
+    }
+
+    void handleRedoAction() {
+        Tab tab = tabPane.getSelectionModel().getSelectedItem();
+        CodeArea codeArea = getCodeArea(tab);
+        codeArea.redo();
+    }
+
+    void handleCutAction() {
+        Tab tab = tabPane.getSelectionModel().getSelectedItem();
+        CodeArea codeArea = getCodeArea(tab);
+        codeArea.cut();
+    }
+
+    void handleCopyAction() {
+        Tab tab = tabPane.getSelectionModel().getSelectedItem();
+        CodeArea codeArea = getCodeArea(tab);
+        codeArea.copy();
+    }
+
+    void handlePasteAction() {
+        Tab tab = tabPane.getSelectionModel().getSelectedItem();
+        CodeArea codeArea = getCodeArea(tab);
+        codeArea.paste();
+    }
+
+    void handleSelectAll() {
+        Tab tab = tabPane.getSelectionModel().getSelectedItem();
+        CodeArea codeArea = getCodeArea(tab);
+        codeArea.selectAll();
     }
 }
