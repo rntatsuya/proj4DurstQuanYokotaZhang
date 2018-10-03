@@ -1,0 +1,27 @@
+/*
+ * File: Main.css
+ * Names: Robert Durst, Tracy Quan, Tatsuya Yokota, Tia Zhang
+ * F18 CS361 Project 4
+ * Style sheet for Main.java
+ * Date: 10/03/2018
+ */
+
+/* style of Hello button */
+#helloButton {
+	/* set button color to pink */
+    -fx-background-color:#8be77c; 
+    /* set button border to black */
+    -fx-border-color: black; 
+    /* set button border to bold */
+    -fx-border-radius: 5; 
+}
+
+/* style of Goodbye button */
+#goodbyeButton {
+	/* set button color to blue */
+    -fx-background-color:#f9afc2; 
+    /* set button border to black */
+    -fx-border-color: black;
+    /* set button border to bold */
+    -fx-border-radius: 5; 
+}
