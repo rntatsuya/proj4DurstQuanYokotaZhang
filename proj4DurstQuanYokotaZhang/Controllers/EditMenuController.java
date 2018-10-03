@@ -4,6 +4,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import proj4DurstQuanYokotaZhang.Common.Messages;
 
+
+/**
+ * EditMenuController handles the actions of buttons in Edit menu.
+ *
+ * @author Robert Durst
+ * @author Tatsuya Yokota
+ * @author Tracy Quan
+ * @author Tia Zhang
+ */
 public class EditMenuController {
     MainController mainController;
 
@@ -55,7 +64,7 @@ public class EditMenuController {
         mainController.handleFileMenuToTabPane(Messages.TabPaneMessage.SELECTALL);
     }
 
-    
+
     public void injectMainController(MainController mainController) {
         this.mainController = mainController;
     }
