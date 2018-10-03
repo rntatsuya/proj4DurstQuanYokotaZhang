@@ -4,6 +4,15 @@ import javafx.fxml.FXML;
 import proj4DurstQuanYokotaZhang.Common.AlertBox;
 import proj4DurstQuanYokotaZhang.Common.Messages;
 
+/**
+ * FileMenuController handles the actions of buttons in File menu.
+ *
+ * @author Robert Durst
+ * @author Tatsuya Yokota
+ * @author Tracy Quan
+ * @author Tia Zhang
+ */
+
 public class FileMenuController {
     //@FXML TabPaneController tabPaneController;
     MainController mainController;
