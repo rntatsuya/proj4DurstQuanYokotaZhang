@@ -15,8 +15,13 @@ import java.util.HashMap;
 import org.fxmisc.richtext.CodeArea;
 import proj4DurstQuanYokotaZhang.Common.AlertBox;
 
+/**
+ * SavedCache is a class that encapsulates a HashMap which keeps
+ * track of the state of saved content in the ide, specifically
+ * per tab CodeArea in the tabPane.
+ */
 public class SavedCache {
-    /** Keep a cache of opened/saved tabs
+    /** Keeps a cache of opened/saved tabs
      *      key   - pointer to CodeArea
      *      value - SHA256(TextArea text)  
      */ 
@@ -26,18 +31,41 @@ public class SavedCache {
         this.cache = new HashMap<>();
     }
 
-
-    public void add(CodeArea key, String content, String filepath) {
+    /**
+     * addOrOverride adds a CodeArea key, TabData value pair to the
+     * savedCache Hashmap. This was named addOrOverride because, this
+     * function does not check if a key already exists, it simply adds
+     * it to the cache (the cache acts the same way).
+     *
+     * @param key      pointer to CodeArea object
+     * @param content  String
+     * @param filepath String
+     */
+    public void addOrOverride(CodeArea key, String content, String filepath) {
         this.cache.put(key, new TabData(filepath, hashAString(content)));
     }
 
+    /**
+     * updateContent updates the content for a given CodeArea.
+     *
+     * @param key     pointer to CodeArea object
+     * @param content String
+     */
     public void updateContent(CodeArea key, String content) {
-        this.cache.get(key).ContentHash = hashAString(content);
+        this.cache.get(key).setContentHash(hashAString(content));
     }
 
+    /**
+     * getFileName returns the filepath for a CodeArea.
+     *
+     * @param key     pointer to CodeArea object
+     * @return String the full/absolute filepath of the tab's
+     *                CodeArea's saved content. If the CodeArea
+     *                does not exist in the cache, returns null.
+     */
     public String getFileName(CodeArea key) {
         if (this.cache.containsKey(key)) {
-            return this.cache.get(key).FilePath;
+            return this.cache.get(key).getFilePath();
         }
 
         return null;
@@ -46,7 +74,7 @@ public class SavedCache {
     /**
      * Removes a textarea's content to the cache.
      * 
-     * @param key String id of the textArea
+     * @param key String
      */
     public void remove(CodeArea key) {
         this.cache.remove(key);
@@ -62,13 +90,13 @@ public class SavedCache {
     public boolean hasChanged(CodeArea key, String value) {
         String hashedText = hashAString(value);
 
-        return this.cache.containsKey(key) && this.cache.get(key).ContentHash.equals(hashedText);
+        return this.cache.containsKey(key) && this.cache.get(key).getContentHash().equals(hashedText);
     }
 
     /**
      * Applies SHA-256 to a string.
      * 
-     * @param text     a normal String 
+     * @param text     String
      * @return String  a hashed String
      */
     private String hashAString(String text) {
@@ -87,14 +115,54 @@ public class SavedCache {
         return result;
     }
 
-    // I wish we had structs
-    public class TabData {
-        public String FilePath;
-        public String ContentHash;
+    /**
+     * TabData is a data structure containing the metadata
+     * related to a tab's codeArea.
+     */
+    private class TabData {
+        private String FilePath;
+        private String ContentHash;
 
-        TabData(String filepath, String contenthash) {
+        /**
+         * TabData constructor.
+         *
+         * @param filepath    String representing the full/absolute
+         *                    path of the tab's saved content.
+         * @param ContentHash String representing the SHA256 hashed
+         *                    content of the saved tab.
+         */
+        TabData(String filepath, String contentHash) {
             this.FilePath = filepath;
-            this.ContentHash = contenthash;
+            this.ContentHash = contentHash;
+        }
+
+        /**
+         * getContentHash returns the value of the ContentHash field.
+         *
+         * @return String the SHA256 hashed content of the saved tab.
+         */
+        public String getContentHash() {
+            return this.ContentHash;
+        }
+
+        /**
+         * setContentHash sets the contentHash field.
+         *
+         * @param contentHash String representing the SHA256 hashed
+         *                    content of the saved tab.
+         */
+        public void setContentHash(String contentHash) {
+            ContentHash = contentHash;
+        }
+
+        /**
+         * getFilePath returns the values of the FilePath field.
+         *
+         * @return String representing the full/absolute
+         *         path of the tab's saved content.
+         */
+        public String getFilePath() {
+            return FilePath;
         }
     }
 }

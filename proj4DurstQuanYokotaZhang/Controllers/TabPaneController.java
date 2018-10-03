@@ -92,7 +92,7 @@ public class TabPaneController {
         // add to savedCache -- while this file technically hasn't been saved
         // yet, this guarantees that the user won't be prompted to save an
         // empty file without any text upon closing.
-        mainController.savedCache.add(codeArea, "", null);
+        mainController.savedCache.addOrOverride(codeArea, "", null);
     }
 
     public void closeTab() {
@@ -140,7 +140,7 @@ public class TabPaneController {
                 tab.setText(file.getName());
 
                 // add CodeArea to hashmap
-                mainController.savedCache.add(codeArea, codeArea.getText(), file.getAbsolutePath());
+                mainController.savedCache.addOrOverride(codeArea, codeArea.getText(), file.getAbsolutePath());
             } catch (IOException e) {
                 AlertBox.fileNotFound();
             }
@@ -228,7 +228,7 @@ public class TabPaneController {
                 tab.setText(file.getName());
 
                 // add CodeArea to hashmap
-                mainController.savedCache.add(codeArea, codeArea.getText(), file.getAbsolutePath());
+                mainController.savedCache.addOrOverride(codeArea, codeArea.getText(), file.getAbsolutePath());
                 return true;
             }
             catch(IOException e) {
