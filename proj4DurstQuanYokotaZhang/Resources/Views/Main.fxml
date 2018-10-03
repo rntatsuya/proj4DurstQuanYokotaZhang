@@ -15,6 +15,6 @@
         <fx:include fx:id="fileMenu" source="FileMenu.fxml" />
         <fx:include fx:id="editMenu" source="EditMenu.fxml" />
     </MenuBar>
-    <!--<fx:include fx:id="toolBar" source="ToolBar.fxml" />-->
+    <fx:include fx:id="toolBar" source="ToolBar.fxml" />
     <fx:include fx:id="tabPane" source="TabPane.fxml" />
 </VBox>
