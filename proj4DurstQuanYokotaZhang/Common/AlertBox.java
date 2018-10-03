@@ -15,7 +15,10 @@ import javafx.scene.control.Alert.AlertType;
  * AlertBox is a static class that instantiates and displays
  * various messages to the user via JavaFx's Alert object.
  *
- * @author  Robert Durst, Yi Feng, Melogy Mao, Danqing Zhao
+ * @author Robert Durst
+ * @author Tatsuya Yokota
+ * @author Tracy Quan
+ * @author Tia Zhang
  */
 public class AlertBox {
     /**
@@ -56,7 +59,7 @@ public class AlertBox {
     public static ButtonType closeTab() {
         Alert alert = new Alert(
                 Alert.AlertType.CONFIRMATION,
-                "Want to save before exit?",
+                "Closing file. Do you want to save?",
                 ButtonType.YES,
                 ButtonType.NO,
                 ButtonType.CANCEL

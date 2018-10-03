@@ -7,6 +7,15 @@ import javafx.scene.control.TextInputDialog;
 
 import java.util.Optional;
 
+/**
+ * ToolBarController handles the actions of HelloButton and GoodbyeButton in the tool bar.
+ *
+ * @author Robert Durst
+ * @author Tatsuya Yokota
+ * @author Tracy Quan
+ * @author Tia Zhang
+ */
+
 public class ToolBarController {
 
     // hello button specified in Main.fxml
