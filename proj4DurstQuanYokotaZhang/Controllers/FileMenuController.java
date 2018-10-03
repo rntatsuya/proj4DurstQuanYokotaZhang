@@ -76,7 +76,12 @@ public class FileMenuController {
         mainController.handleFileMenuToTabPane(Messages.TabPaneMessage.EXIT);
     }
 
-
+    /**
+     * Connects FileMenuController with MainController.
+     * MainController is a mediator between all controllers.
+     *
+     * @param mainController
+     */
     public void injectMainController(MainController mainController) {
         this.mainController = mainController;
     }

@@ -64,7 +64,12 @@ public class EditMenuController {
         mainController.handleFileMenuToTabPane(Messages.TabPaneMessage.SELECTALL);
     }
 
-
+    /**
+     * Connects EditMenuController with MainController.
+     * MainController is a mediator between all controllers.
+     *
+     * @param mainController
+     */
     public void injectMainController(MainController mainController) {
         this.mainController = mainController;
     }
