@@ -30,6 +30,8 @@ public class TabPaneController {
         Tab tab = new Tab();
         tab.setText("New file");
 
+        tab.setOnCloseRequest(event -> closeTab());
+
         // add to tabPane
         tabPane.getTabs().add(tab);
 
