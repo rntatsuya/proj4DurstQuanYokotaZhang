@@ -3,10 +3,9 @@
  * Names: Robert Durst, Tracy Quan, Tatsuya Yokota, Tia Zhang
  * F18 CS361 Project 4
  * Style sheet for text in code areas
- * Modified off RichTextFX's Async Demo CSS file
+ * Modified from RichTextFX's Async Demo CSS file
  * Date: 10/03/2018
  */
-
 
 .keyword {
     -fx-fill: purple;
@@ -19,20 +18,16 @@
     -fx-fill: teal;
     -fx-font-weight: bold;
 }
-
 .string {
     -fx-fill: blue;
 }
-
 .comment {
 	-fx-fill: cadetblue;
 }
-
 .int{
     -fx-fill: firebrick;
     -fx-font-weight: bold;
 }
-
 .paragraph-box:has-caret {
     -fx-background-color: #f2f9fc;
 }
