@@ -59,7 +59,7 @@ public class AlertBox {
     public static ButtonType closeTab() {
         Alert alert = new Alert(
                 Alert.AlertType.CONFIRMATION,
-                "Want to save before exit?",
+                "Closing file. Do you want to save?",
                 ButtonType.YES,
                 ButtonType.NO,
                 ButtonType.CANCEL
