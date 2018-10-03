@@ -25,6 +25,47 @@ public class TabPaneController {
     @FXML TabPane tabPane;
     MainController mainController;
 
+    public void distributeMessage(Messages.TabPaneMessage tabPaneMessage) {
+        switch (tabPaneMessage) {
+            case NEW:
+                addTab();
+                break;
+            case OPEN:
+                openFileTab();
+                break;
+            case SAVEAS:
+                handleSaveAsAction();
+                break;
+            case SAVE:
+                handleSaveAction();
+                break;
+            case CLOSE:
+                closeTab();
+                break;
+            case EXIT:
+                handleExitAction();
+                break;
+            case UNDO:
+                handleUndoAction();
+                break;
+            case REDO:
+                handleRedoAction();
+                break;
+            case PASTE:
+                handlePasteAction();
+                break;
+            case CUT:
+                handleCutAction();
+                break;
+            case COPY:
+                handleCopyAction();
+                break;
+            case SELECTALL:
+                handleSelectAll();
+                break;
+        }
+    }
+
 
     public void addTab() {
         Tab tab = new Tab();
@@ -47,6 +88,11 @@ public class TabPaneController {
 
         // add scrollPane to tab
         tab.setContent(scrollPane);
+
+        // add to savedCache -- while this file technically hasn't been saved
+        // yet, this guarantees that the user won't be prompted to save an
+        // empty file without any text upon closing.
+        mainController.savedCache.add(codeArea, "", null);
     }
 
     public void closeTab() {
@@ -105,48 +151,6 @@ public class TabPaneController {
     public void injectMainController(MainController mainController) {
         this.mainController = mainController;
     }
-
-    public void distributeMessage(Messages.TabPaneMessage tabPaneMessage) {
-        switch (tabPaneMessage) {
-            case NEW:
-                addTab();
-                break;
-            case OPEN:
-                openFileTab();
-                break;
-            case SAVEAS:
-                handleSaveAsAction();
-                break;
-            case SAVE:
-                handleSaveAction();
-                break;
-            case CLOSE:
-                closeTab();
-                break;
-            case EXIT:
-                handleExitAction();
-                break;
-            case UNDO:
-                handleUndoAction();
-                break;
-            case REDO:
-                handleRedoAction();
-                break;
-            case PASTE:
-                handlePasteAction();
-                break;
-            case CUT:
-                handleCutAction();
-                break;
-            case COPY:
-                handleCopyAction();
-                break;
-            case SELECTALL:
-                handleSelectAll();
-                break;
-        }
-    }
-
 
     boolean handleClose(Tab tab){
         CodeArea codeArea = getCodeArea(tab);
