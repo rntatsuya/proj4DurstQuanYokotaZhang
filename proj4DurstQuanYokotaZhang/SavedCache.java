@@ -13,6 +13,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import org.fxmisc.richtext.CodeArea;
+import proj4DurstQuanYokotaZhang.Common.AlertBox;
 
 public class SavedCache {
     /** Keep a cache of opened/saved tabs
@@ -80,7 +81,7 @@ public class SavedCache {
             result = new String(messageDigest.digest());
           }
           catch (NoSuchAlgorithmException ex) {
-            System.err.println(ex);
+              AlertBox.cannotLoadCrypto();
           }
 
         return result;

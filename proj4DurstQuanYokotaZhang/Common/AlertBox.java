@@ -60,4 +60,29 @@ public class AlertBox {
         return alert.getResult();
     }
 
+    /**
+     * saveFailure displays an alert message warning the
+     * user that the file cannot save.
+     */
+    public static void saveFailure() {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("ERROR!");
+        alert.setHeaderText("Unable to save file, please confirm file exists ad try again.");
+
+        alert.showAndWait();
+    }
+
+    /**
+     * cannotLoadCrypto displays an alert message warning the
+     * user that the application cannot find the required
+     * SHA-256 algorithm.
+     */
+    public static void cannotLoadCrypto() {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("WARNING!");
+        alert.setHeaderText("Unable to load SHA256 algorithm. Please reference error message and contact a developer for help.");
+
+        alert.showAndWait();
+    }
+
 }
