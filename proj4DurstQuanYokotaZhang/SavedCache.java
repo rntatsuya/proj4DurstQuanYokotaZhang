@@ -90,7 +90,7 @@ public class SavedCache {
     public boolean hasChanged(CodeArea key, String value) {
         String hashedText = hashAString(value);
 
-        return this.cache.containsKey(key) && this.cache.get(key).getContentHash().equals(hashedText);
+        return !this.cache.containsKey(key) || !this.cache.get(key).getContentHash().equals(hashedText);
     }
 
     /**

@@ -155,8 +155,9 @@ public class TabPaneController {
     boolean handleClose(Tab tab){
         CodeArea codeArea = getCodeArea(tab);
 
-        // check if (a) and (b)
-        if (mainController.savedCache.hasChanged(codeArea, codeArea.getText())) {
+        boolean fileExists = new File(mainController.savedCache.getFileName(codeArea)).exists();
+
+        if (!mainController.savedCache.hasChanged(codeArea, codeArea.getText()) && fileExists) {
             tabPane.getTabs().remove(tab);
             mainController.savedCache.remove(codeArea);
             return false;
