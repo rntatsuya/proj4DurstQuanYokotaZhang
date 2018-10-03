@@ -181,7 +181,7 @@ public class TabPaneController {
 
     boolean handleSaveAction() {
         Tab tab = tabPane.getSelectionModel().getSelectedItem();
-        
+
         String fileName = mainController.savedCache.getFileName(getCodeArea(tab));
 
         //handle as unsaved file
@@ -201,7 +201,7 @@ public class TabPaneController {
                 return true;
 
             } catch (IOException e) {
-                System.out.println(e.getMessage());
+                AlertBox.fileNotFound();
                 return false;
             }
         }
@@ -212,8 +212,8 @@ public class TabPaneController {
         fileChooser.setTitle("save the file as...");
         File file = fileChooser.showSaveDialog(null);
 
-        if (file != null){
-            try{
+        if (file != null ){
+            try {
                 BufferedWriter writer = new BufferedWriter(new FileWriter(file));
                 Tab tab = tabPane.getSelectionModel().getSelectedItem();
                 CodeArea codeArea = getCodeArea(tab);
@@ -225,8 +225,8 @@ public class TabPaneController {
                 mainController.savedCache.add(codeArea, codeArea.getText(), file.getAbsolutePath());
                 return true;
             }
-            catch(IOException e){
-                System.out.println(e.getMessage());
+            catch(IOException e) {
+                AlertBox.saveFailure();
                 return false;
             }
         } else {
