@@ -8,6 +8,15 @@ import java.util.Collections;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * RichText handles the styling of the text in code area.
+ *
+ * @author Robert Durst
+ * @author Tatsuya Yokota
+ * @author Tracy Quan
+ * @author Tia Zhang
+ */
+
 public class RichText {
 
     private static final String[] KEYWORDS = new String[] {

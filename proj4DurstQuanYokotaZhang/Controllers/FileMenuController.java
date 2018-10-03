@@ -14,7 +14,7 @@ import proj4DurstQuanYokotaZhang.Common.Messages;
  */
 
 public class FileMenuController {
-    //@FXML TabPaneController tabPaneController;
+
     MainController mainController;
 
     /**
