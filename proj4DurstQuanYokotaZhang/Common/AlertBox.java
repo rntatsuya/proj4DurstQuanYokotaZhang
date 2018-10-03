@@ -6,14 +6,18 @@
  * Date: 10/03/2018
  */
 
-
 package proj4DurstQuanYokotaZhang.Common;
 
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 
+/**
+ * AlertBox is a static class that instantiates and displays
+ * various messages to the user via JavaFx's Alert object.
+ *
+ * @author  Robert Durst, Yi Feng, Melogy Mao, Danqing Zhao
+ */
 public class AlertBox {
-
     /**
      * fileNotFound displays an alert message warning the
      * user that the file they selected was not found.
@@ -43,6 +47,11 @@ public class AlertBox {
     /**
      * closeTab displays an alert message presenting the user
      * with three options for dealing with an open tab.
+     *
+     * @return ButtonType returns a ButtonType object that
+     *                    allows the calling class to
+     *                    react accordingly to the user's
+     *                    input.
      */
     public static ButtonType closeTab() {
         Alert alert = new Alert(
@@ -84,5 +93,4 @@ public class AlertBox {
 
         alert.showAndWait();
     }
-
 }
