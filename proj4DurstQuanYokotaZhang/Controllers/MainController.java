@@ -8,7 +8,6 @@ public class MainController {
     @FXML private EditMenuController editMenuController;
     @FXML private FileMenuController fileMenuController;
     @FXML private TabPaneController tabPaneController;
-//    @FXML private ToolBarController toolBarController;
 
     // CACHE
     public SavedCache savedCache = new SavedCache();
@@ -17,10 +16,10 @@ public class MainController {
         System.out.println("This is initialized");
         tabPaneController.injectMainController(this);
         fileMenuController.injectMainController(this);
+        editMenuController.injectMainController(this);
     }
 
     public void handleFileMenuToTabPane(Messages.TabPaneMessage tabPaneMessage) {
         tabPaneController.distributeMessage(tabPaneMessage);
     }
-
 }
