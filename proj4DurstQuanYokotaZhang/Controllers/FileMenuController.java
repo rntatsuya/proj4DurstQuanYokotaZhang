@@ -1,12 +1,28 @@
 package proj4DurstQuanYokotaZhang.Controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.MenuItem;
 import proj4DurstQuanYokotaZhang.Common.AlertBox;
 import proj4DurstQuanYokotaZhang.Common.Messages;
 
 public class FileMenuController {
     //@FXML TabPaneController tabPaneController;
     MainController mainController;
+
+    @FXML MenuItem closeMenuButton;
+    @FXML MenuItem saveMenuButton;
+    @FXML MenuItem saveAsMenuButton;
+
+
+    public void disableMenuItems(boolean isTabEmpty, boolean isTabChanged) {
+        closeMenuButton.setDisable(isTabEmpty);
+        saveMenuButton.setDisable(!isTabChanged);
+        saveAsMenuButton.setDisable(!isTabChanged);
+    }
+
+    @FXML protected void handleFileMenuShown() {
+        mainController.handleDisableFileMenuItems();
+    }
 
     /**
      * Handles the About button action in File menu.

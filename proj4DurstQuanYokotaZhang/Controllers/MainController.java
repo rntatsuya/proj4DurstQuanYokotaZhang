@@ -13,7 +13,6 @@ public class MainController {
     public SavedCache savedCache = new SavedCache();
 
     @FXML private void initialize() {
-        System.out.println("This is initialized");
         tabPaneController.injectMainController(this);
         fileMenuController.injectMainController(this);
         editMenuController.injectMainController(this);
@@ -21,5 +20,20 @@ public class MainController {
 
     public void handleFileMenuToTabPane(Messages.TabPaneMessage tabPaneMessage) {
         tabPaneController.distributeMessage(tabPaneMessage);
+    }
+
+    public void handleDisableFileMenuItems() {
+        boolean isTabChanged = tabPaneController.checkIfChanged();
+        boolean isTabEmpty = tabPaneController.checkIfEmpty();
+
+        fileMenuController.disableMenuItems(isTabEmpty, isTabChanged);
+    }
+
+    public void handleDisableEditMenuItems() {
+//        boolean isTabChanged = tabPaneController.checkIfChanged();
+        boolean isTabEmpty = tabPaneController.checkIfEmpty();
+        boolean isNumUndosZero = tabPaneController.checkIfNumUndosZero();
+
+        editMenuController.disableMenuItems(isTabEmpty, isNumUndosZero);
     }
 }

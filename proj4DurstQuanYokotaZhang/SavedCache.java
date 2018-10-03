@@ -35,6 +35,22 @@ public class SavedCache {
         this.cache.get(key).ContentHash = hashAString(content);
     }
 
+    public void incrementNumUndos(CodeArea key) {
+        this.cache.get(key).NumConsecutiveUndos++;
+    }
+
+    public void decrementNumUndos(CodeArea key) {
+        this.cache.get(key).NumConsecutiveUndos--;
+    }
+
+    public void resetNumUndos(CodeArea key) {
+        this.cache.get(key).NumConsecutiveUndos = 0;
+    }
+
+    public int getNumUndos(CodeArea key) {
+        return this.cache.get(key).NumConsecutiveUndos;
+    }
+
     public String getFileName(CodeArea key) {
         if (this.cache.containsKey(key)) {
             return this.cache.get(key).FilePath;
@@ -62,7 +78,7 @@ public class SavedCache {
     public boolean hasChanged(CodeArea key, String value) {
         String hashedText = hashAString(value);
 
-        return this.cache.containsKey(key) && this.cache.get(key).ContentHash.equals(hashedText);
+        return !this.cache.containsKey(key) || !this.cache.get(key).ContentHash.equals(hashedText);
     }
 
     /**
@@ -91,10 +107,12 @@ public class SavedCache {
     public class TabData {
         public String FilePath;
         public String ContentHash;
+        public int NumConsecutiveUndos;
 
         TabData(String filepath, String contenthash) {
             this.FilePath = filepath;
             this.ContentHash = contenthash;
+            this.NumConsecutiveUndos = 0;
         }
     }
 }

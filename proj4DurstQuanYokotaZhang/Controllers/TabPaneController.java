@@ -13,9 +13,8 @@ import java.nio.file.Files;
 import java.io.IOException;
 import org.fxmisc.flowless.VirtualizedScrollPane;
 import java.io.BufferedWriter;
-
-
 import javafx.scene.control.ButtonType;
+import javafx.stage.Stage;
 import java.io.FileWriter;
 
 
@@ -23,9 +22,12 @@ public class TabPaneController {
     // The tabpane
     // tab pane containing text areas for open files, specified in Main.fxml
     @FXML TabPane tabPane;
+    private boolean editedByUndo;
     MainController mainController;
 
     public void distributeMessage(Messages.TabPaneMessage tabPaneMessage) {
+        Tab thisTab;
+        CodeArea codeArea;
         switch (tabPaneMessage) {
             case NEW:
                 addTab();
@@ -46,9 +48,14 @@ public class TabPaneController {
                 handleExitAction();
                 break;
             case UNDO:
+                codeArea = getSelectedCodeArea();
+                mainController.savedCache.incrementNumUndos(codeArea);
+                editedByUndo = true;
                 handleUndoAction();
                 break;
             case REDO:
+                codeArea = getSelectedCodeArea();
+                mainController.savedCache.decrementNumUndos(codeArea);
                 handleRedoAction();
                 break;
             case PASTE:
@@ -66,6 +73,27 @@ public class TabPaneController {
         }
     }
 
+    public boolean checkIfChanged() {
+        CodeArea codeArea = getSelectedCodeArea();
+
+        if (codeArea == null)
+            return false;
+
+        return mainController.savedCache.hasChanged(codeArea, codeArea.getText());
+    }
+
+    public boolean checkIfEmpty() {
+        return (tabPane.getTabs().size() == 0 ? true : false);
+    }
+
+    public boolean checkIfNumUndosZero() {
+        CodeArea codeArea = getSelectedCodeArea();
+
+        if (codeArea == null)
+            return true;
+
+        return (mainController.savedCache.getNumUndos(codeArea) == 0);
+    }
 
     public void addTab() {
         Tab tab = new Tab();
@@ -82,7 +110,15 @@ public class TabPaneController {
         // instantiate the CodeArea
         CodeArea codeArea = new CodeArea();
         VirtualizedScrollPane scrollPane = new VirtualizedScrollPane<>(codeArea);
+        // TODO: Move this listener somewhere else, doesn't make much sense to have this here
         codeArea.textProperty().addListener((obs, oldText, newText) -> {
+            if (!editedByUndo) {
+                mainController.savedCache.resetNumUndos(codeArea);
+                editedByUndo = false;
+            }
+
+            mainController.handleDisableFileMenuItems();
+            mainController.handleDisableEditMenuItems();
             codeArea.setStyleSpans(0, proj4DurstQuanYokotaZhang.RichText.computeHighlighting(newText));
         });
 
@@ -101,6 +137,9 @@ public class TabPaneController {
     }
 
     private CodeArea getCodeArea(Tab tab){
+        if (tab == null)
+            return null;
+
         VirtualizedScrollPane pane = (VirtualizedScrollPane) tab.getContent();
         return (CodeArea) pane.getContent();
     }
@@ -125,19 +164,22 @@ public class TabPaneController {
         FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Java files (*.java)", "*.java");
         fileChooser.getExtensionFilters().add(filter);
 
+        // gets the current stage
+        Stage parentWindow = (Stage)tabPane.getScene().getWindow();
+
         //Show save file dialog
-        File file = fileChooser.showOpenDialog(null);
+        File file = fileChooser.showOpenDialog(parentWindow);
         if(file != null){
 
             //Got rid of some duplicate code here
             addTab();
-            Tab tab = tabPane.getSelectionModel().getSelectedItem();
-            CodeArea codeArea = getCodeArea(tab);
+            Tab curTab = tabPane.getSelectionModel().getSelectedItem();
+            CodeArea codeArea = getCodeArea(curTab);
 
             try {
                 String fileText = getFileContentString(file);
                 codeArea.replaceText(0, codeArea.getLength(), fileText);
-                tab.setText(file.getName());
+                curTab.setText(file.getName());
 
                 // add CodeArea to hashmap
                 mainController.savedCache.add(codeArea, codeArea.getText(), file.getAbsolutePath());
@@ -156,7 +198,7 @@ public class TabPaneController {
         CodeArea codeArea = getCodeArea(tab);
 
         // check if (a) and (b)
-        if (mainController.savedCache.hasChanged(codeArea, codeArea.getText())) {
+        if (!mainController.savedCache.hasChanged(codeArea, codeArea.getText())) {
             tabPane.getTabs().remove(tab);
             mainController.savedCache.remove(codeArea);
             return false;
@@ -186,9 +228,9 @@ public class TabPaneController {
 
 
     boolean handleSaveAction() {
-        Tab tab = tabPane.getSelectionModel().getSelectedItem();
+        CodeArea codeArea = getSelectedCodeArea();
 
-        String fileName = mainController.savedCache.getFileName(getCodeArea(tab));
+        String fileName = mainController.savedCache.getFileName(codeArea);
 
         //handle as unsaved file
         if (fileName == null) {
@@ -197,7 +239,6 @@ public class TabPaneController {
             //handle as previously saved file
             try {
                 BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
-                CodeArea codeArea = getCodeArea(tab);
                 writer.write(codeArea.getText());
                 writer.close();
 
@@ -216,16 +257,19 @@ public class TabPaneController {
     boolean handleSaveAsAction() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("save the file as...");
-        File file = fileChooser.showSaveDialog(null);
 
+        // gets the current stage
+        Stage parentWindow = (Stage)tabPane.getScene().getWindow();
+
+        File file = fileChooser.showSaveDialog(parentWindow);
         if (file != null ){
             try {
                 BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-                Tab tab = tabPane.getSelectionModel().getSelectedItem();
-                CodeArea codeArea = getCodeArea(tab);
+                Tab curTab = tabPane.getSelectionModel().getSelectedItem();
+                CodeArea codeArea = getCodeArea(curTab);
                 writer.write(codeArea.getText());
                 writer.close();
-                tab.setText(file.getName());
+                curTab.setText(file.getName());
 
                 // add CodeArea to hashmap
                 mainController.savedCache.add(codeArea, codeArea.getText(), file.getAbsolutePath());
@@ -260,38 +304,37 @@ public class TabPaneController {
     }
 
     void handleUndoAction() {
-        Tab tab = tabPane.getSelectionModel().getSelectedItem();
-        CodeArea codeArea = getCodeArea(tab);
+        CodeArea codeArea = getSelectedCodeArea();
         codeArea.undo();
     }
 
     void handleRedoAction() {
-        Tab tab = tabPane.getSelectionModel().getSelectedItem();
-        CodeArea codeArea = getCodeArea(tab);
+        CodeArea codeArea = getSelectedCodeArea();
         codeArea.redo();
     }
 
     void handleCutAction() {
-        Tab tab = tabPane.getSelectionModel().getSelectedItem();
-        CodeArea codeArea = getCodeArea(tab);
+        CodeArea codeArea = getSelectedCodeArea();
         codeArea.cut();
     }
 
     void handleCopyAction() {
-        Tab tab = tabPane.getSelectionModel().getSelectedItem();
-        CodeArea codeArea = getCodeArea(tab);
+        CodeArea codeArea = getSelectedCodeArea();
         codeArea.copy();
     }
 
     void handlePasteAction() {
-        Tab tab = tabPane.getSelectionModel().getSelectedItem();
-        CodeArea codeArea = getCodeArea(tab);
+        CodeArea codeArea = getSelectedCodeArea();
         codeArea.paste();
     }
 
     void handleSelectAll() {
-        Tab tab = tabPane.getSelectionModel().getSelectedItem();
-        CodeArea codeArea = getCodeArea(tab);
+        CodeArea codeArea = getSelectedCodeArea();
         codeArea.selectAll();
+    }
+
+    private CodeArea getSelectedCodeArea() {
+        Tab curTab = tabPane.getSelectionModel().getSelectedItem();
+        return getCodeArea(curTab);
     }
 }
