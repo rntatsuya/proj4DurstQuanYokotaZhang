@@ -128,7 +128,7 @@ public class SavedCache {
          *
          * @param filepath    String representing the full/absolute
          *                    path of the tab's saved content.
-         * @param ContentHash String representing the SHA256 hashed
+         * @param contentHash String representing the SHA256 hashed
          *                    content of the saved tab.
          */
         TabData(String filepath, String contentHash) {
